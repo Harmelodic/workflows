@@ -1,5 +1,5 @@
 # $schema: https://www.schemastore.org/github-workflow.json
-name: build-openapi
+name: verify-openapi
 
 on:
   workflow_call:

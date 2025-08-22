@@ -1,5 +1,5 @@
 # $schema: https://www.schemastore.org/github-workflow.json
-name: build-asyncapi
+name: verify-asyncapi
 
 on:
   workflow_call:

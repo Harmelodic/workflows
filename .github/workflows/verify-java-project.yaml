@@ -1,5 +1,5 @@
 # $schema: https://www.schemastore.org/github-workflow.json
-name: build-java-project
+name: verify-java-project
 
 on:
   workflow_call:
