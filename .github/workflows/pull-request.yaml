@@ -1,0 +1,12 @@
+# $schema: https://www.schemastore.org/github-workflow.json
+name: pull-request
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+jobs:
+  verify-workflow:
+    uses: ./.github/workflows/verify-github-workflow.yaml
