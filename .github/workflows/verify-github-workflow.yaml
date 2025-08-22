@@ -1,16 +1,11 @@
 # $schema: https://www.schemastore.org/github-workflow.json
 name: verify-github-workflow
 
-"on":
+on:
   workflow_call:
-    inputs:
-      workflow:
-        required: true
-        type: string
-        description: The GitHub Actions workflow to target.
 
 jobs:
-  tflint:
+  yamllint:
     permissions:
       contents: 'read'
     runs-on: ubuntu-latest
