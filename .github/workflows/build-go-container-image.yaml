@@ -1,0 +1,37 @@
+# $schema: https://www.schemastore.org/github-workflow.json
+name: build-go-container-image
+
+on:
+  workflow_call:
+    inputs:
+      image:
+        required: true
+        type: string
+        description: The name of the image.
+
+jobs:
+  docker-build:
+    permissions:
+      contents: read
+      id-token: write # Fetch OIDC Token for GCP Auth
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+      - uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5
+        with:
+          go-version-file: go.mod
+      # Install golangci-lint (golangci-lint runs during the `make lint`... but also runs as part of the action)
+      # (bit wasteful, but it's fast and does caching - so running linting twice is a fair trade-off (for now))
+      - uses: golangci/golangci-lint-action@c21e01fb4be82019605a9badcb1a947c67472866
+        with:
+          version: latest
+      - run: make
+      - run: docker build -t "${{ inputs.image }}:$GITHUB_SHA" .
+      - uses: google-github-actions/auth@6fc4af4b145ae7821d527454aa9bd537d1f2dc5f # v2
+        with:
+          workload_identity_provider: projects/401363556022/locations/global/workloadIdentityPools/github/providers/github-oidc
+          service_account: automation@automation-220928.iam.gserviceaccount.com
+      - run: gcloud auth configure-docker europe-north1-docker.pkg.dev
+      - run: docker push "${{ inputs.image }}:$GITHUB_SHA"
+      - run: docker tag "${{ inputs.image }}:$GITHUB_SHA" "${{ inputs.image }}:latest"
+      - run: docker push "${{ inputs.image }}:latest"
