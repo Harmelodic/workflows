@@ -1,4 +1,4 @@
-# $schema: http://json.schemastore.org/github-workflow.json
+# $schema: http://www.schemastore.org/github-workflow.json
 name: build-asyncapi
 
 on:
