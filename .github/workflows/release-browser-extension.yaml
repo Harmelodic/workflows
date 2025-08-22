@@ -1,0 +1,45 @@
+# $schema: http://json.schemastore.org/github-workflow.json
+name: release-browser-extension
+
+on:
+  workflow_call:
+    inputs:
+      extension-name:
+        required: true
+        type: string
+      release-version:
+        required: true
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+
+        # GitHub Auth / Configure?
+
+      - run: zip -r "${{ inputs.extension-name }}.${{ inputs.release-version }}.zip" src
+
+      - uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        env:
+          RELEASE_VERSION: ${{ inputs.release-version }}
+          RELEASE_ARTIFACT: ${{ inputs.extension-name }}.${{ inputs.release-version }}.zip
+        with:
+          script: |
+            const release = await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: process.env.RELEASE_VERSION,
+              name: process.env.RELEASE_VERSION
+            })
+            
+            const fs = require('fs').promises;
+          
+            github.rest.repos.uploadReleaseAsset({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: release.data.id,
+              name: process.env.RELEASE_ARTIFACT,
+              data: await fs.readFile(process.env.RELEASE_ARTIFACT),
+            });
