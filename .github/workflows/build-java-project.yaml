@@ -1,0 +1,18 @@
+# $schema: http://json.schemastore.org/github-workflow.json
+name: build-java-project
+
+on:
+  workflow_call:
+
+jobs:
+  maven-verify:
+    permissions:
+      contents: 'read'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 24
+      - run: mvn verify --no-transfer-progress
