@@ -1,4 +1,4 @@
-# $schema: http://www.schemastore.org/github-workflow.json
+# $schema: https://www.schemastore.org/github-workflow.json
 name: build-java-project
 
 on:
