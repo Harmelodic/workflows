@@ -1,0 +1,16 @@
+# $schema: https://www.schemastore.org/github-workflow.json
+name: verify-javascript-project
+
+on:
+  workflow_call:
+
+jobs:
+  npm-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 19
+      - run: npm clean-install
+      - run: npm test
