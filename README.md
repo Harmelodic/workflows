@@ -8,7 +8,8 @@ GitHub Action workflows for shipping software.
 
 3 types of workflows:
 
-- Verify: Workflows used to verify a project is correct.
+- [Verify](https://en.wikipedia.org/wiki/Verification_and_validation#Verification): Workflows used to verify a project
+  is correct.
 - Build: Workflows used to build software artifacts.
 - Release: Workflows used to release software.
 
