@@ -1,0 +1,26 @@
+# $schema: https://www.schemastore.org/github-workflow.json
+name: build-browser-extension
+
+on:
+  workflow_call:
+    inputs:
+      extension-name:
+        required: true
+        type: string
+        description: The name of the image.
+      release-version:
+        required: true
+        type: string
+        description: Version to release.
+      directory:
+        required: false
+        type: string
+        description: Directory of where source code is found for browser extension.
+        default: src
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+      - run: zip -r "${{ inputs.extension-name }}.${{ inputs.release-version }}.zip" ${{ inputs.directory }}
