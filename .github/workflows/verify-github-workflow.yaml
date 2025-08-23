@@ -19,5 +19,5 @@ jobs:
     steps:
       - uses: dsanders11/json-schema-validate-action@79b2d95a446a0d786f7f244ae7764f8370ff3657 # v1
         with:
-          schema: https://json.schemastore.org/github-workflow.json
-          files: .github/workflows/*.yaml
+          schema: https://www.schemastore.org/github-workflow.json
+          files: .github/workflows/**.yaml
