@@ -3,6 +3,12 @@ name: verify-rego-policy
 
 on:
   workflow_call:
+    inputs:
+      use-local-yamllint-config:
+        required: false
+        type: boolean
+        default: false
+        description: Whether to use the yamllint config already found in the repo.
 
 jobs:
   yamllint:
