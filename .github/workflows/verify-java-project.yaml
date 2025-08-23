@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5
       - run: ${{ inputs.use-local-yamllint-config }} || wget https://raw.githubusercontent.com/Harmelodic/workflows/refs/heads/main/.yamllint.yaml --output-document=.yamllint.yaml
-      - run: yamllint
+      - run: yamllint src
   maven-verify:
     permissions:
       contents: 'read'
