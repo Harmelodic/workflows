@@ -1,8 +1,5 @@
----
 # $schema: https://www.schemastore.org/yamllint.json
-
 extends: default
-
 rules:
   comments:
     min-spaces-from-content: 1

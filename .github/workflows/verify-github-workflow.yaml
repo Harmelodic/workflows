@@ -12,3 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5
       - run: yamllint .github/workflows
+  schema-validation:
+    permissions:
+      contents: 'read'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dsanders11/json-schema-validate-action@79b2d95a446a0d786f7f244ae7764f8370ff3657 # v1
+        with:
+          schema: https://json.schemastore.org/github-workflow.json
+          files: .github/workflows/**.yaml
