@@ -8,9 +8,9 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  verify-workflow:
+  verify-workflows:
     uses: ./.github/workflows/verify-github-workflows.yaml
-  verify-workflow-with-local:
+  verify-workflows-with-local:
     uses: ./.github/workflows/verify-github-workflows.yaml
     with:
       use-local-yamllint-config: true
