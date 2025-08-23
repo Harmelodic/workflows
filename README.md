@@ -1,8 +1,8 @@
 # workflows
 
-GitHub Action workflows for shipping software.
+GitHub Actions workflows for shipping software.
 
-[GitHub Action documentation](https://docs.github.com/en/actions).
+[GitHub Actions documentation](https://docs.github.com/en/actions).
 
 ## Types of workflows
 
