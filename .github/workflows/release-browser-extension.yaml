@@ -21,11 +21,11 @@ on:
 jobs:
   release:
     permissions:
-      contents: 'write'
+      contents: 'write' # Need write permission in order to create release with
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
       - run: zip -r "${{ inputs.extension-name }}.${{ inputs.release-version }}.zip" ${{ inputs.directory }}
       - run: gh release create ${{ inputs.release-version }} ${{ inputs.extension-name }}.${{ inputs.release-version }}.zip
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Need GH_TOKEN for gh CLI auth
