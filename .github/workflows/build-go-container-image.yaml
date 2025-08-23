@@ -12,8 +12,8 @@ on:
 jobs:
   docker-build:
     permissions:
-      contents: read
-      id-token: write # Fetch OIDC Token for GCP Auth
+      contents: 'read'
+      id-token: 'write' # Fetch OIDC Token for GCP Auth
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
