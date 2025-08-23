@@ -9,4 +9,4 @@ on:
 
 jobs:
   verify-workflow:
-    uses: ./.github/workflows/verify-github-workflow.yaml
+    uses: ./.github/workflows/verify-github-workflows.yaml
