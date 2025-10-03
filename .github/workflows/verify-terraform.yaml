@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
-      - uses: terraform-linters/setup-tflint@ae78205cfffec9e8d93fd2b3115c7e9d3166d4b6 # v5
+      - uses: terraform-linters/setup-tflint@a8a2cbdfb17397afadcc4fb3fcd64fdb215f0f9f # v6
       - run: ${{ inputs.use-local-tflint-config }} || wget https://raw.githubusercontent.com/Harmelodic/workflows/refs/heads/main/.tflint.hcl --output-document=.tflint.hcl
       - run: tflint --init
       - run: tflint --chdir=${{ inputs.directory }}
