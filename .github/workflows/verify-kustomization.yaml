@@ -20,7 +20,7 @@ jobs:
       contents: 'read'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3  # v6
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8  # v6
       - run: ${{ inputs.use-local-yamllint-config }} || wget https://raw.githubusercontent.com/Harmelodic/workflows/refs/heads/main/.yamllint.yaml --output-document=.yamllint.yaml
       - run: yamllint ${{ inputs.directory }}
   kustomize-build:
@@ -28,7 +28,7 @@ jobs:
       contents: 'read'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
       - run: sudo snap install kustomize
       - run: kustomize build ${{ inputs.directory }}
   conftest-test:
@@ -36,7 +36,7 @@ jobs:
       contents: 'read'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
       - run: sudo snap install kustomize
       - name: Install conftest as per https://www.conftest.dev/install/
         run: |
