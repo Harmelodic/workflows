@@ -30,6 +30,5 @@ jobs:
           workload_identity_provider: projects/401363556022/locations/global/workloadIdentityPools/github/providers/github-oidc
           service_account: automation@automation-220928.iam.gserviceaccount.com
       - run: terraform -chdir=${{ inputs.directory }} init -upgrade
-      - run: terraform -chdir=${{ inputs.directory }} validate
       - run: terraform -chdir=${{ inputs.directory }} workspace select -or-create ${{ inputs.workspace }}
       - run: terraform -chdir=${{ inputs.directory }} apply -var-file="${{ inputs.workspace }}.tfvars" -auto-approve
