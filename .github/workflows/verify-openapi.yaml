@@ -18,7 +18,7 @@ jobs:
   yamllint-specification:
     permissions:
       contents: 'read'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # yamllint already installed in `ubuntu-latest` runner image.
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
       - run: ${{ inputs.use-local-yamllint-config }} || wget https://raw.githubusercontent.com/Harmelodic/workflows/refs/heads/main/.yamllint.yaml --output-document=.yamllint.yaml
@@ -26,7 +26,7 @@ jobs:
   yamllint-spectral-config:
     permissions:
       contents: 'read'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # yamllint already installed in `ubuntu-latest` runner image.
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
       - run: ${{ inputs.use-local-yamllint-config }} || wget https://raw.githubusercontent.com/Harmelodic/workflows/refs/heads/main/.yamllint.yaml --output-document=.yamllint.yaml

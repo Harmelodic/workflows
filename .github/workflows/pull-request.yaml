@@ -17,7 +17,7 @@ jobs:
   yamllint-config:
     permissions:
       contents: 'read'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # yamllint already installed in `ubuntu-latest` runner image.
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
       - run: yamllint .yamllint.yaml
