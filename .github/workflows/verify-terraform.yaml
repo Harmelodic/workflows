@@ -56,5 +56,5 @@ jobs:
         with:
           workload_identity_provider: projects/401363556022/locations/global/workloadIdentityPools/github/providers/github-oidc
           service_account: terraform-verifier@automation-220928.iam.gserviceaccount.com
-      - run: terraform -chdir=${{ inputs.directory }} init -upgrade
+      - run: terraform -chdir=${{ inputs.directory }} init -upgrade && git diff --exit-code # init might update the lock file, but the lock file shouldn't need updating.
       - run: terraform -chdir=${{ inputs.directory }} validate
