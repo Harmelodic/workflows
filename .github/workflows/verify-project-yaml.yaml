@@ -1,0 +1,35 @@
+# $schema: https://www.schemastore.org/github-workflow.json
+name: verify-project-yaml
+
+on:
+  workflow_call:
+    inputs:
+      use-local-yamllint-config:
+        required: false
+        type: boolean
+        default: false
+        description: Whether to use the yamllint config already found in the repo.
+
+jobs:
+  yamllint-all-files:
+    permissions:
+      contents: 'read'
+    runs-on: ubuntu-latest # yamllint already installed in `ubuntu-latest` runner image.
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
+      - run: ${{ inputs.use-local-yamllint-config }} || wget https://raw.githubusercontent.com/Harmelodic/workflows/refs/heads/main/.yamllint.yaml --output-document=.yamllint.yaml
+      - run: yamllint --strict .
+  require-no-yml-extension:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+      - run: |
+          if find . | grep ".yml$"; then
+            echo "Files using .yml extension found! Change to using .yaml extension instead."
+            exit 1
+          else
+            echo "No files found with .yml extension."
+          fi
