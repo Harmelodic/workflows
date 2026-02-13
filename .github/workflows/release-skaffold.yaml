@@ -19,11 +19,16 @@ on:
         required: true
         type: string
         description: The name of the GKE cluster to deploy to.
+      runtime-environment:
+        required: false
+        type: string
+        description: The name of the runtime environment that you're deploying to. The environment variable `runtime_environment` will be set to this string, for use in Skaffold files for targeting environments.
+        default: unknown
       skaffold-file:
         required: false
         type: string
         description: Path to skaffold file you want to run.
-        default: "skaffold.yaml"
+        default: skaffold.yaml
 
 jobs:
   skaffold-run:
@@ -46,4 +51,6 @@ jobs:
           cluster_name: ${{ inputs.gke-cluster-name }}
           location: ${{ inputs.gke-cluster-location }}
           project_id: ${{ inputs.gcp-project-id }}
-      - run: skaffold run -f ${{ inputs.skaffold-file }}
+      - env:
+          runtime_environment: ${{ inputs.runtime-environment }}
+        run: skaffold run --filename ${{ inputs.skaffold-file }}
