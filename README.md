@@ -26,17 +26,17 @@ are release branches:
 
 - Pull request will build. Merging to a release branch will release an artifact (artifact promotion). A separate
   deployment system with release a deployment of the artifact.
-    - e.g. Web services
+	- e.g. Web services
 - Pull request will verify. Merging to a release branch will build and release an artifact. A separate deployment system
   with release a deployment of the artifact.
-    - e.g. Web services, where Pull Request should not auto-build releasable artifacts.
+	- e.g. Web services, where Pull Request should not auto-build releasable artifacts.
 - Pull request will build. Merging to a release branch will release
-    - e.g. Libraries with automatic releasing on merge.
+	- e.g. Libraries with automatic releasing on merge.
 - Pull request will verify. Merging to a release branch will build. Tagging a commit on a release branch will release.
-    - e.g. Libraries with releasing on tag.
+	- e.g. Libraries with releasing on tag.
 - Pull request will verify. Merging to a release branch will build and release.
-    - e.g. Libraries with automatic releasing on merge, where Pull Request should not auto-build releasable artifacts.
+	- e.g. Libraries with automatic releasing on merge, where Pull Request should not auto-build releasable artifacts.
 - Pull request will verify. Merging to a release branch will directly release (when no build is necessary).
-    - e.g. Scripts / Infrastructure as code, where no artifact is made but instead code is directly executed.
+	- e.g. Scripts / Infrastructure as code, where no artifact is made but instead code is directly executed.
 - Pull request will verify. Tagging a commit on a release branch will release (when no build is necessary).
-    - e.g. Policy / Infrastructure as code, where the code repository is the artifact and needs semantically releasing.
+	- e.g. Policy / Infrastructure as code, where the code repository is the artifact and needs semantically releasing.
