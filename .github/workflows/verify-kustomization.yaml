@@ -17,7 +17,7 @@ on:
 jobs:
   yamllint:
     permissions:
-      contents: 'read'
+      contents: read
     runs-on: ubuntu-latest # yamllint already installed in `ubuntu-latest` runner image.
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
@@ -25,7 +25,7 @@ jobs:
       - run: yamllint --strict ${{ inputs.directory }}
   kustomize-build:
     permissions:
-      contents: 'read'
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -33,7 +33,7 @@ jobs:
       - run: kustomize build ${{ inputs.directory }}
   conftest-test:
     permissions:
-      contents: 'read'
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6

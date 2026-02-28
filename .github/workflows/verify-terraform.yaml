@@ -17,7 +17,7 @@ on:
 jobs:
   tflint:
     permissions:
-      contents: 'read'
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -27,7 +27,7 @@ jobs:
       - run: tflint --chdir=${{ inputs.directory }}
   checkov:
     permissions:
-      contents: 'read'
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -38,7 +38,7 @@ jobs:
       - run: checkov --directory ${{ inputs.directory }}
   terraform-fmt:
     permissions:
-      contents: 'read'
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -46,8 +46,8 @@ jobs:
       - run: terraform -chdir=${{ inputs.directory }} fmt -recursive && git diff --exit-code
   terraform-validate:
     permissions:
-      contents: 'read'
-      id-token: 'write' # Fetch OIDC Token for GCP Auth
+      contents: read
+      id-token: write # Fetch OIDC Token for GCP Auth
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
