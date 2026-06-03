@@ -20,7 +20,7 @@ jobs:
       contents: read
     runs-on: ubuntu-latest # yamllint already installed in `ubuntu-latest` runner image.
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10  # v6
       - run: ${{ inputs.use-local-yamllint-config }} || wget https://raw.githubusercontent.com/Harmelodic/workflows/refs/heads/main/.yamllint.yaml --output-document=.yamllint.yaml
       - run: yamllint --strict ${{ inputs.directory }}
   kustomize-build:
@@ -28,7 +28,7 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
       - run: sudo snap install kustomize
       - run: kustomize build ${{ inputs.directory }}
   conftest-test:
@@ -36,7 +36,7 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
       - run: sudo snap install kustomize
       - name: Install conftest as per https://www.conftest.dev/install/
         run: |
